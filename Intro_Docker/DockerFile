@@ -1,0 +1,12 @@
+FROM alpine
+RUN apk update
+RUN apk add vim
+RUN vim --version
+RUN apk add python3
+RUN apk add py3-pip
+COPY ./requirements.txt /tmp/
+RUN pip install -r /tmp/requirements.txt
+RUN mkdir /app
+COPY ./app_test.py /app
+EXPOSE 5000
+CMD ["python3", "app/app_test.py"] 
